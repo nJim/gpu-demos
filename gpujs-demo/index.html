@@ -1,0 +1,43 @@
+
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>GPU.JS Demo</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+
+  </head>
+
+  <body>
+    <h2>GPU.JS Demo</h2>
+    <script src="https://cdn.jsdelivr.net/npm/gpu.js@latest/dist/gpu-browser.min.js"></script>
+    <script>
+        const generateMatrices = () => {
+    const matrices = [[], []]
+    for (let y = 0; y < 512; y++){
+      matrices[0].push([])
+      matrices[1].push([])
+      for (let x = 0; x < 512; x++){
+        matrices[0][y].push(Math.random())
+        matrices[1][y].push(Math.random())
+      }
+    }
+    return matrices
+  }
+
+      // GPU is a constructor and namespace for browser
+      const gpu = new GPU();
+      const multiplyMatrix = gpu.createKernel(function(a, b) {
+          let sum = 0;
+          for (let i = 0; i < 512; i++) {
+              sum += a[this.thread.y][i] * b[i][this.thread.x];
+          }
+          return sum;
+      }).setOutput([512, 512]);
+      const numbers = generateMatrices();
+      const c = multiplyMatrix(numbers[0], numbers[1]);
+      console.log(c);
+    </script>
+  </body>
+</html>

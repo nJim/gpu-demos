@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Benchmarking GPU.JS</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/gpu.js@latest/dist/gpu-browser.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <h2>Benchmarking GPU.JS</h2>
+    <div class="container" id="root">
+      <div class="input-field">
+        <label for="size">Size of Matrix(uniform)</label>
+        <input id="size" class="size" type="number" placeholder="128" />
+      </div>
+      <button id="bench" type="button" class="pure-button pure-button-primary">
+        benchmark!
+      </button>
+      <br><br>
+      <div class="out"></div>
+      <div id="results"></div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
